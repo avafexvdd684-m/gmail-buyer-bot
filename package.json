@@ -1,1 +1,14 @@
 
+{
+  "name": "telegram-gmail-buyer-bot",
+  "version": "1.0.0",
+  "description": "Telegram Bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0",
+    "dotenv": "^16.4.7"
+  }
+}
