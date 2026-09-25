@@ -237,7 +237,7 @@ async function showChannelGatekeeper(chatId, lang, isRejoin = false) {
 }
 
 // /start command
-bot.onText(//start(.*)/, async (msg, match) => {
+bot.onText(new RegExp('^/start(.*)'), async (msg, match) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
   const userName = msg.from.first_name || 'User';
@@ -317,7 +317,7 @@ bot.onText(//start(.*)/, async (msg, match) => {
 });
 
 // /language command to change language anytime
-bot.onText(//language/, async (msg) => {
+bot.onText(new RegExp('^/language'), async (msg) => {
   const chatId = msg.chat.id;
   await bot.sendMessage(
     chatId,
@@ -786,12 +786,12 @@ bot.on('callback_query', async (query) => {
 });
 
 // Admin command
-bot.onText(/\/admin/, async (msg) => {
+bot.onText(new RegExp('^/admin'), async (msg) => {
   await sendAdminPanel(msg.chat.id, msg.from.id);
 });
 
 // Channel command
-bot.onText(/\/channel/, async (msg) => {
+bot.onText(new RegExp('^/channel'), async (msg) => {
   await bot.sendMessage(
     msg.chat.id,
     '📢 *আমাদের অফিশিয়াল চ্যানেল:*\n\nযুক্ত হতে নিচে বাটনে ক্লিক করুন:',
@@ -1290,4 +1290,3 @@ bot.on('message', async (msg) => {
     reply_markup: getMainMenuKeyboard(lang, isAdmin),
   });
 });
-
