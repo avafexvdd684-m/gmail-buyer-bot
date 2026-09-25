@@ -163,7 +163,7 @@ function getMainMenuKeyboard(lang, isAdmin = false) {
     [{ text: '📥 Submit your own' }, { text: '👤 My Profile' }],
     [{ text: '📑 My Accounts' }, { text: '💳 Withdraw' }],
     [{ text: '👥 Refer & Earn' }, { text: '💬 Support' }],
-    [{ text: '📢 Official Channel' }],
+    [{ text: '📢 Official Channel' }, { text: '🌐 Language / ভাষা' }],
   ];
   if (isAdmin) {
     kb.push([{ text: '👑 Admin Panel' }]);
@@ -1275,6 +1275,25 @@ bot.on('message', async (msg) => {
         parse_mode: 'Markdown',
         reply_markup: {
           inline_keyboard: [[{ text: '📢 Join Official Channel', url: CHANNEL_URL }]],
+        },
+      }
+    );
+    return;
+  }
+
+  if (text.includes('Language') || text.includes('ভাষা')) {
+    await bot.sendMessage(
+      chatId,
+      '🌐 *ভাষা নির্বাচন / Select Language:*\n\nপছন্দের ভাষা বেছে নিন / Choose your preferred language:',
+      {
+        parse_mode: 'Markdown',
+        reply_markup: {
+          inline_keyboard: [
+            [
+              { text: '🇧🇩 বাংলা (Bangla)', callback_data: 'lang_bn' },
+              { text: '🇬🇧 English', callback_data: 'lang_en' },
+            ],
+          ],
         },
       }
     );
